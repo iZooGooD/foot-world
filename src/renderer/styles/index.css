@@ -1,0 +1,37 @@
+.main-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.search-box {
+  display: flex;
+  width: 100%;
+  padding: 20px;
+}
+.search-box button {
+  width: 20%;
+  background-color: #25316D;
+  outline: none;
+  color: rgb(238, 238, 238);
+  border: none;
+}
+.search-box button:hover {
+  background-color: #141b41;
+}
+.search-box .custom-search-input {
+  width: 80%;
+  height: 50px;
+  outline: none;
+  border: 1px solid rgb(238, 238, 238);
+  padding-left: 30px;
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  font-family: "Montserrat", sans-serif;
+}/*# sourceMappingURL=index.css.map */

@@ -1,0 +1,22 @@
+.search-box {
+    display: flex;
+    width: 100%; 
+    padding: 20px;
+    button {
+        width: 20%;
+        background-color: $primary-color;
+        outline: none;
+        color: $primary-text-color;
+        border: none;
+    }
+    button:hover {
+        background-color: #141b41;
+    }
+    .custom-search-input {
+        width: 80%;
+        height: 50px;
+        outline: none;
+        border: 1px solid $primary-border-color;
+        padding-left: 30px;
+    }
+}
