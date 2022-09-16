@@ -1,16 +1,23 @@
 import Searchbox from 'renderer/components/searchbox';
 import Container from 'renderer/components/container';
+import { useEffect, useState } from 'react';
 import { getHighlightFootballPageData } from 'renderer/utils/operations';
 
 const HomeLayout = () => {
-  getHighlightFootballPageData().then(response=>{
-     console.log(response);
-  })
+  const [matches, setMatches] = useState([]);
+  useEffect(() => {
+    getHighlightFootballPageData()
+      .then((data) => {
+        setMatches(data);
+        return data;
+      })
+      .catch(() => {});
+  }, []);
   return (
     <div className="main-container">
       <Searchbox />
       <div className="main-content">
-        <Container />
+        <Container matches={matches} />
       </div>
     </div>
   );

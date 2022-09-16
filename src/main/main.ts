@@ -9,7 +9,7 @@
  * `./src/main.js` using webpack. This gives us some performance wins.
  */
 import path from 'path';
-import { app, BrowserWindow, shell, ipcMain } from 'electron';
+import { app, BrowserWindow, shell, ipcMain, session } from 'electron';
 import { autoUpdater } from 'electron-updater';
 import log from 'electron-log';
 import MenuBuilder from './menu';
@@ -108,6 +108,13 @@ const createWindow = async () => {
     return { action: 'deny' };
   });
 
+  const filter = {
+    urls: ['https://*.highlightsfootball.net/*']
+  }
+  session.defaultSession.webRequest.onBeforeSendHeaders(filter, (details, callback) => {
+    details.requestHeaders['referer'] = 'https://highlightsfootball.net/'
+    callback({ requestHeaders: details.requestHeaders })
+  })
   // Remove this if your app does not use auto updates
   // eslint-disable-next-line
   new AppUpdater();
