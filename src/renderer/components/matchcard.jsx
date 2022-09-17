@@ -7,7 +7,8 @@ import {
   download,
 } from '../utils/operations';
 
-const Matchcard = ({ title, backgroundImageLink, matchLink, source }) => {
+const Matchcard = ({ matchDetails }) => {
+  const { title, matchLink, source, backgroundImageLink } = matchDetails;
   const [downloadLinks, setDownloadLinks] = useState([]);
   const [hasGeneratedDownloadLink, setHasGeneratedDownloadLink] =
     useState(false);
@@ -93,10 +94,7 @@ const Matchcard = ({ title, backgroundImageLink, matchLink, source }) => {
 };
 
 Matchcard.propTypes = {
-  title: PropTypes.string.isRequired,
-  backgroundImageLink: PropTypes.string.isRequired,
-  matchLink: PropTypes.string.isRequired,
-  source: PropTypes.string.isRequired,
+  matchDetails: PropTypes.shape.isRequired,
 };
 
 export default Matchcard;
