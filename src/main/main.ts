@@ -109,12 +109,15 @@ const createWindow = async () => {
   });
 
   const filter = {
-    urls: ['https://*.highlightsfootball.net/*']
-  }
-  session.defaultSession.webRequest.onBeforeSendHeaders(filter, (details, callback) => {
-    details.requestHeaders['referer'] = 'https://highlightsfootball.net/'
-    callback({ requestHeaders: details.requestHeaders })
-  })
+    urls: ['https://*.highlightsfootball.net/*'],
+  };
+  session.defaultSession.webRequest.onBeforeSendHeaders(
+    filter,
+    (details, callback) => {
+      details.requestHeaders.referer = 'https://highlightsfootball.net/';
+      callback({ requestHeaders: details.requestHeaders });
+    }
+  );
   // Remove this if your app does not use auto updates
   // eslint-disable-next-line
   new AppUpdater();

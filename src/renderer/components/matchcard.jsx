@@ -1,12 +1,10 @@
-import axios from 'axios';
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { ColorRing } from 'react-loader-spinner';
 import {
   findMp3u8Link,
   buildLinksForDownload,
   download,
-} from 'renderer/utils/operations';
-import { ColorRing } from 'react-loader-spinner';
+} from '../utils/operations';
 
 const Matchcard = (props) => {
   const { title, backgroundImageLink, matchLink, source } = props.matchDetails;

@@ -1,16 +1,13 @@
-import Searchbox from 'renderer/components/searchbox';
-import Container from 'renderer/components/container';
 import { useEffect, useState } from 'react';
-import { getHighlightFootballPageData } from 'renderer/utils/operations';
+import { getHighlightFootballPageData } from '../utils/operations';
+import Searchbox from '../components/searchbox';
+import Container from '../components/container';
 
 const HomeLayout = () => {
   const [matches, setMatches] = useState([]);
   useEffect(() => {
     getHighlightFootballPageData()
-      .then((data) => {
-        setMatches(data);
-        return data;
-      })
+      .then((data) => setMatches(data))
       .catch(() => {});
   }, []);
   return (
