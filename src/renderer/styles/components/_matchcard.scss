@@ -1,23 +1,74 @@
 .match-card {
   display: flex;
-  flex-direction: column;
-  width: 33%;
   border: 1px solid $primary-border-color;
   box-shadow: 0px -5px 10px 0px $primary-border-color;
   padding: 10px;
+  position: relative;
+  justify-content: space-between;
 }
 
 .video-information {
   display: flex;
   flex-direction: column;
   min-height: 120px;
-}
-
-.source-image-container {
-  min-width: 281px;
+  margin: 12px;
+  flex-basis: 500px;
 }
 
 .source_image {
   height: 100%;
-  width: 100%;
+  width: 304px;
+}
+
+.generated_links {
+  margin: 12px;
+}
+.match-title,.match-source {
+  margin: 4px;
+}
+
+.download-button {
+  outline: none;
+  border: 1px solid $primary-border-color;
+  background-color: $primary-color;
+  color: $primary-text-color;
+  padding: 12px 12px;
+  transition: all 0.3s;
+  width: 200px;
+  height: 40px;
+  align-self: end;
+}
+
+.download-button:hover {
+  background-color: #151d41;
+}
+
+.formats-button {
+  padding: 8px;
+  margin-right: 4px;
+  border: none;
+  background-color: #1b1c1a;
+  color: $primary-text-color;
+  padding: 8px;
+  border-radius: 4px;
+}
+
+.spinner-loader {
+  position: absolute;
+  right: 35%;
+  top: 45%;
+}
+
+.download-button:disabled,
+.download-button[disabled]{
+  border: 1px solid #999999;
+  background-color: #cccccc;
+  color: #666666;
+}
+
+.formats-button:disabled,
+.formats-button[disabled]{
+  border: 1px solid #999999;
+  background-color: #cccccc;
+  color: #666666;
 }
