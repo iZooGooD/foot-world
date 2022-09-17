@@ -1,13 +1,13 @@
 import { useState } from 'react';
 import { ColorRing } from 'react-loader-spinner';
+import PropTypes from 'prop-types';
 import {
   findMp3u8Link,
   buildLinksForDownload,
   download,
 } from '../utils/operations';
 
-const Matchcard = (props) => {
-  const { title, backgroundImageLink, matchLink, source } = props.matchDetails;
+const Matchcard = ({ title, backgroundImageLink, matchLink, source }) => {
   const [downloadLinks, setDownloadLinks] = useState([]);
   const [hasGeneratedDownloadLink, setHasGeneratedDownloadLink] =
     useState(false);
@@ -90,6 +90,13 @@ const Matchcard = (props) => {
       </button>
     </div>
   );
+};
+
+Matchcard.propTypes = {
+  title: PropTypes.string.isRequired,
+  backgroundImageLink: PropTypes.string.isRequired,
+  matchLink: PropTypes.string.isRequired,
+  source: PropTypes.string.isRequired,
 };
 
 export default Matchcard;

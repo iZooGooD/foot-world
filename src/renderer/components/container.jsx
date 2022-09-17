@@ -1,7 +1,7 @@
+import PropTypes from 'prop-types';
 import MatchCard from './matchcard';
 
-const Container = (props) => {
-  const { matches } = props;
+const Container = ({ matches }) => {
   return (
     <div className="trending_videos">
       {matches.map((match) => {
@@ -9,5 +9,8 @@ const Container = (props) => {
       })}
     </div>
   );
+};
+Container.propTypes = {
+  matches: PropTypes.arrayOf.isRequired,
 };
 export default Container;
