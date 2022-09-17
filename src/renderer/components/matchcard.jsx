@@ -12,6 +12,9 @@ const Matchcard = (props) => {
   const [downloadLinks,setDownloadLinks] = useState([]);
   const [hasGeneratedDownloadLink, setHasGeneratedDownloadLink] =
     useState(false);
+  const [hasStartedDownload, setHasStartedDownload] =
+    useState(false);
+  const [downloadProgress, setDownloadProgress] = useState({});
   const onDownload = async () => {
     const link = await findMp3u8Link(matchLink);
     const availableResolutions = await buildLinksForDownload(link);
@@ -19,8 +22,11 @@ const Matchcard = (props) => {
     setHasGeneratedDownloadLink(true);
   };
 
-  const onStartDownload = async (url, format) => {
-    download(url, format);
+  const onStartDownload = async (url, format, fileName) => {
+    setHasStartedDownload(true);
+    download(url, format, fileName, (status) => {
+      setDownloadProgress(status);
+    });
   };
 
   return (
@@ -37,8 +43,16 @@ const Matchcard = (props) => {
         {hasGeneratedDownloadLink === true && (
           <div className="generated_links">
             {downloadLinks.map((item) => (
-              <button type="button" onClick={()=>onStartDownload(item.downloadLink,item.resolution)}>{item.resolution}</button>
+              <button type="button" onClick={()=>onStartDownload(item.downloadLink,item.resolution,title)}>{item.resolution}</button>
             ))}
+          </div>
+        )}
+        {hasStartedDownload === true && downloadProgress.progress !== 100.0 && (
+          <div className="download-stats">
+            <p>
+              Download progress:{downloadProgress.progress}%{' '}
+              {downloadProgress.mbDownloaded}mb
+            </p>
           </div>
         )}
       </div>

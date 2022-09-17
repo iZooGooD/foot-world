@@ -2,6 +2,7 @@ const axios = require('axios').default;
 const HTMLParser = require('node-html-parser');
 const m3u8stream = require('m3u8stream');
 const fs = require('fs');
+const path = require('path');
 
 const CONFIG = {
   headers: {},
@@ -53,15 +54,27 @@ const findMp3u8Link = async (pageLink) => {
   return mp3u8Url ?? '';
 };
 
-const download = async (url, format) => {
+const download = async (url, format, fileName, callback) => {
   const stream = m3u8stream(url);
-  stream.pipe(fs.createWriteStream('videofile.mp4'));
+  const DOWNLOAD_DIR = path.join(
+    process.env.HOME || process.env.USERPROFILE,
+    'downloads/'
+  );
+  const filePath = path.join(
+    DOWNLOAD_DIR,
+    fileName.concat('.mp4').replaceAll(' ', '_')
+  );
+  stream.pipe(fs.createWriteStream(filePath));
+  let segmentProcessed = 0;
+  let maxSegments = 0;
+  let mbDownloaded = 0;
+  let progress = 0;
   stream.on('progress', (segment, totalSegments, downloaded) => {
-    console.log(
-      `${segment.num} of ${totalSegments} segments ` +
-        `(${((segment.num / totalSegments) * 100).toFixed(2)}%) ` +
-        `${(downloaded / 1024 / 1024).toFixed(2)}MB downloaded`
-    );
+    segmentProcessed = segment.num;
+    maxSegments = totalSegments;
+    mbDownloaded = (downloaded / 1024 / 1024).toFixed(2);
+    progress = ((segment.num / totalSegments) * 100).toFixed(2);
+    callback({ segmentProcessed, maxSegments, mbDownloaded, progress });
   });
 };
 
