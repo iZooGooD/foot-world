@@ -1,0 +1,23 @@
+.match-card {
+  display: flex;
+  flex-direction: column;
+  width: 33%;
+  border: 1px solid $primary-border-color;
+  box-shadow: 0px -5px 10px 0px $primary-border-color;
+  padding: 10px;
+}
+
+.video-information {
+  display: flex;
+  flex-direction: column;
+  min-height: 120px;
+}
+
+.source-image-container {
+  min-width: 281px;
+}
+
+.source_image {
+  height: 100%;
+  width: 100%;
+}

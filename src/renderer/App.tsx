@@ -6,7 +6,7 @@ export default function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<HomeLayout />} />
+        <Route path="/" element={<HomeLayout />} ></Route>
       </Routes>
     </Router>
   );

@@ -4,10 +4,7 @@ const m3u8stream = require('m3u8stream');
 const fs = require('fs');
 
 const CONFIG = {
-  headers: {
-    'user-agent':
-      'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36',
-  },
+  headers: {},
 };
 const VIDEO_KEY_HF = 'highlightsfootball.net/video';
 const HIGHLIGHTS = 'Highlights';
